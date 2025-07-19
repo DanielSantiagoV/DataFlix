@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - DataFlix</title>
+    <link rel="stylesheet" href="../css/main-style.css">
+    <link rel="stylesheet" href="../css/responsive-style.css">
+    <link rel="stylesheet" href="../css/style-unified.css"> 
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="../index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+            <span>DataFlix</span>
+        </a>
+        <nav class="site-header__nav-desktop">
+            <ul class="nav-list">
+                <li class="nav-list__item"><a href="../index.html" class="nav-list__link">Home</a></li>
+                <li class="nav-list__item"><a href="courses.html" class="nav-list__link">Courses</a></li>
+                <li class="nav-list__item"><a href="course-details.html" class="nav-list__link">Course Details</a></li>
+                <li class="nav-list__item"><a href="profile.html" class="nav-list__link is-active">Profile</a></li>
+                <li class="nav-list__item"><a href="login.html" class="nav-list__link">Login</a></li>
+                <li class="nav-list__item"><a href="signup.html" class="nav-list__link">Signup</a></li>
+                <li class="nav-list__item"><a href="quiz.html" class="nav-list__link">Quiz</a></li>
+                <li class="nav-list__item"><a href="quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="site-header__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html">
+                <img src="../assets/img/profile.png" alt="User Avatar" class="header-avatar">
+            </a>
+        </div>
+        <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+            <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+        </button>
+    </header>
+    <div class="mobile-slide-nav" id="mobile-navigation">
+        <nav class="mobile-slide-nav__links">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li><a href="../index.html" class="mobile-slide-nav__link">Home</a></li>
+                <li><a href="courses.html" class="mobile-slide-nav__link">Courses</a></li>
+                <li><a href="course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+                <li><a href="profile.html" class="mobile-slide-nav__link is-active">Profile</a></li>
+                <li><a href="login.html" class="mobile-slide-nav__link">Login</a></li>
+                <li><a href="signup.html" class="mobile-slide-nav__link">Signup</a></li>
+                <li><a href="quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+                <li><a href="quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-slide-nav__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html" class="btn">My Profile</a>
+        </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <script src="../js/menuhamburguer.js"></script>
+
+    <main class="profile-main">
+        <section class="user-info-header">
+            <img src="../assets/img/profile.png" alt="User Avatar" class="profile-picture-large">
+            <div class="user-details">
+                <!-- (CAMBIO 1) - Añadido ID para el nombre -->
+                <h1 id="profile-fullname">Sophia Bennett</h1>
+                <p>Data Enthusiast</p>
+                <span>Joined 2021</span>
+            </div>
+        </section>
+
+        <nav class="profile-tabs">
+            <a href="#" class="active">Overview</a>
+            <a href="#">Progress</a>
+            <a href="#">Settings</a>
+        </nav>
+
+        <div class="profile-content-grid">
+            <div class="content-section">
+                <h2>Account Details</h2>
+                <div class="detail-item">
+                    <span class="detail-label">Username</span>
+                    <!-- (CAMBIO 2) - Añadido ID para el username -->
+                    <span id="profile-username" class="detail-value">sophia.bennett</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Email</span>
+                    <!-- (CAMBIO 3) - Añadido ID para el email -->
+                    <span id="profile-email" class="detail-value">sophia.bennett@email.com</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Password</span>
+                    <span class="detail-value">**********</span>
+                </div>
+            </div>
+            
+            <!-- Tu sección de Progress y Preferences se mantienen igual -->
+            <div class="content-section" id="progress-section">
+                <h2>Progress</h2>
+                <div id="progress-content"></div>
+            </div>
+
+            <!-- (CAMBIO 4) - Añadida una nueva sección para el botón de Cerrar Sesión -->
+            <div class="content-section">
+                <h2>Account Actions</h2>
+                <button id="logout-button" class="btn btn--danger">Log Out</button>
+            </div>
+        </div>
+    </main>
+
+     <!-- ======================= Ventana Modal de Confirmación ======================= -->
+     <div id="logout-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Log Out</h2>
+            <p>Are you sure you want to end your session?</p>
+            <div class="modal-actions">
+                <button id="cancel-logout-btn" class="btn btn--secondary">Cancel</button>
+                <button id="confirm-logout-btn" class="btn btn--danger">Yes, Log Out</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enlazamos el script de autenticación al final del body -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>
