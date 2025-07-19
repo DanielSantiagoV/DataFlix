@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Courses - DataFlix</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    <link rel="stylesheet" href="../css/style-unified.css">
+    <link rel="stylesheet" href="couses.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ======================= Header del Sitio ======================= -->
+    <header class="site-header">
+        <a href="../index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+            <span>DataFlix</span>
+        </a>
+        <nav class="site-header__nav-desktop">
+            <ul class="nav-list">
+                <li class="nav-list__item"><a href="../index.html" class="nav-list__link">Home</a></li>
+                <li class="nav-list__item"><a href="courses.html" class="nav-list__link">Courses</a></li>
+                <li class="nav-list__item"><a href="course-details.html" class="nav-list__link">Course Details</a></li>
+                <li class="nav-list__item"><a href="profile.html" class="nav-list__link">Profile</a></li>
+                <li class="nav-list__item"><a href="login.html" class="nav-list__link">Login</a></li>
+                <li class="nav-list__item"><a href="signup.html" class="nav-list__link">Signup</a></li>
+                <li class="nav-list__item"><a href="quiz.html" class="nav-list__link">Quiz</a></li>
+                <li class="nav-list__item"><a href="quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="site-header__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html">
+                <img src="../assets/img/profile.png" alt="User Avatar" class="header-avatar">
+            </a>
+        </div>
+        <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+            <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+        </button>
+    </header>
+    <div class="mobile-slide-nav" id="mobile-navigation">
+        <nav class="mobile-slide-nav__links">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li><a href="../index.html" class="mobile-slide-nav__link">Home</a></li>
+                <li><a href="courses.html" class="mobile-slide-nav__link">Courses</a></li>
+                <li><a href="course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+                <li><a href="profile.html" class="mobile-slide-nav__link">Profile</a></li>
+                <li><a href="login.html" class="mobile-slide-nav__link">Login</a></li>
+                <li><a href="signup.html" class="mobile-slide-nav__link">Signup</a></li>
+                <li><a href="quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+                <li><a href="quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-slide-nav__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html" class="btn">My Profile</a>
+        </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+
+    <!-- ==================== Contenido Principal de Cursos ==================== -->
+    <main class="site-main">
+        <div class="courses-container">
+            <section class="courses-header">
+                <!-- ... (El contenido de la sección de cursos se mantiene igual) ... -->
+                <h1 class="courses-title">Database Courses</h1>
+                <p class="courses-subtitle">Explore our comprehensive database courses designed to equip you with the skills to manage and analyze data effectively. From foundational concepts to advanced techniques, our courses cater to all skill levels.</p>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for courses">
+                </div>
+            </section>
+            <section class="courses-content">
+                <!-- ... (Filtros, tarjetas y paginación se mantienen igual) ... -->
+                 <div class="filters">
+                    <h2 class="filters-title">Filters</h2>
+                    <div class="filter-buttons">
+                        <button class="btn-filter">Beginner</button>
+                        <button class="btn-filter">Intermediate</button>
+                        <button class="btn-filter">Advanced</button>
+                        <button class="btn-filter is-active">All Levels</button>
+                    </div>
+                </div>
+                <div class="courses-grid">
+  <article class="course-card">
+    <img src="https://img.youtube.com/vi/6S8A-1jBD5Y/0.jpg" alt="¿Qué son las bases de datos?" class="course-card__image">
+    <div class="course-card__content">
+      <h3 class="course-card__title">¿Qué son las bases de datos?</h3>
+      <p class="course-card__description">Descubre qué es una base de datos, su objetivo y su importancia en la vida diaria y en la organización de la información.</p>
+      <a href="https://www.youtube.com/watch?v=6S8A-1jBD5Y" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+      <a href="#" class="btn btn--secondary" onclick="selectCourse(0)">Ir al Quiz</a>
+    </div>
+  </article>
+  <article class="course-card">
+    <img src="https://img.youtube.com/vi/4wo_wZWk_UM/0.jpg" alt="¿Qué son los datos?" class="course-card__image">
+    <div class="course-card__content">
+      <h3 class="course-card__title">¿Qué son los datos?</h3>
+      <p class="course-card__description">Aprende qué es un dato, su papel en la toma de decisiones y los diferentes tipos de datos según su estructura.</p>
+      <a href="https://www.youtube.com/watch?v=4wo_wZWk_UM" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+      <a href="#" class="btn btn--secondary" onclick="selectCourse(1)">Ir al Quiz</a>
+    </div>
+  </article>
+  <article class="course-card">
+    <img src="https://img.youtube.com/vi/b2L1Cn5vxFw/0.jpg" alt="¿Cómo entender las bases de datos?" class="course-card__image">
+    <div class="course-card__content">
+      <h3 class="course-card__title">¿Cómo entender las bases de datos?</h3>
+      <p class="course-card__description">Comprende la estructura de las bases de datos relacionales, la normalización y las relaciones entre tablas.</p>
+      <a href="https://www.youtube.com/watch?v=b2L1Cn5vxFw" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+      <a href="#" class="btn btn--secondary" onclick="selectCourse(2)">Ir al Quiz</a>
+    </div>
+  </article>
+  <article class="course-card">
+    <img src="https://img.youtube.com/vi/6fcNDvQYZk0/0.jpg" alt="¿Cómo hacer representaciones conceptuales de una base de datos?" class="course-card__image">
+    <div class="course-card__content">
+      <h3 class="course-card__title">¿Cómo hacer representaciones conceptuales de una base de datos?</h3>
+      <p class="course-card__description">Explora los modelos entidad-relación, los elementos de un diagrama E-R y su utilidad en el diseño de bases de datos.</p>
+      <a href="https://www.youtube.com/watch?v=6fcNDvQYZk0" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+      <a href="#" class="btn btn--secondary" onclick="selectCourse(3)">Ir al Quiz</a>
+    </div>
+  </article>
+</div>
+                 <nav class="pagination">
+                    <a href="#" class="pagination__arrow"><i class="fas fa-chevron-left"></i></a>
+                    <a href="#" class="pagination__number is-active">1</a>
+                    <a href="#" class="pagination__number">2</a>
+                    <a href="#" class="pagination__number">3</a>
+                    <span class="pagination__ellipsis">...</span>
+                    <a href="#" class="pagination__number">10</a>
+                    <a href="#" class="pagination__arrow"><i class="fas fa-chevron-right"></i></a>
+                </nav>
+            </section>
+        </div>
+    </main>
+    
+    <!-- ==================== SCRIPT PARA EL MENÚ MÓVIL ==================== -->
+    <script src="../js/menuhamburguer.js"></script>
+
+    <script>
+function selectCourse(idx) {
+  localStorage.setItem('selectedCourse', idx);
+  window.location.href = 'course-details.html';
+}
+</script>
+
+</body>
+</html>
