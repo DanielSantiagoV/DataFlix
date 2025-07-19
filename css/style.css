@@ -101,3 +101,32 @@ body {
 .pagination__number.is-active, .pagination__number:hover { background-color: var(--color-primary); color: var(--color-text); }
 .pagination__arrow:hover { background-color: var(--color-card); }
 .pagination__ellipsis { color: var(--color-text-muted); }
+
+/* =================================================================== /
+/               5. RESPONSIVIDAD (TODAS LAS MEDIA QUERIES AL FINAL)   /
+/ =================================================================== */
+@media (max-width: 1024px) {
+    .site-headernav-desktop,
+    .site-headeractions {
+        display: none;
+    }
+    .hamburger-button {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header { padding: 15px 20px; }
+    .courses-container { padding: 30px 15px; }
+    .courses-title { font-size: 32px; }
+    .filters { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
+@media (max-width: 480px) {
+    .site-headerlogo span {
+        display: none;
+    }
+    .site-headerlogo img {
+        height: 32px;
+    }
+}
