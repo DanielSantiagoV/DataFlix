@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - DataFlix</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    <link rel="stylesheet" href="../css/style-unified.css">
+    <style>
+        body { background: #181411; color: #f3f0ed; font-family: 'Poppins', 'Inter', sans-serif; }
+        .course-details-container { max-width: 800px; margin: 0 auto; padding: 40px 16px 60px 16px; }
+        .breadcrumb { color: #b6a89a; font-size: 0.98rem; margin-bottom: 18px; }
+        .breadcrumb a { color: #b6a89a; text-decoration: none; }
+        .breadcrumb .sep { margin: 0 6px; }
+        .course-title { font-size: 2.3rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .course-desc { color: #b6a89a; font-size: 1.08rem; margin-bottom: 32px; line-height: 1.6; }
+        .section-title { font-size: 1.2rem; font-weight: 600; margin: 32px 0 18px 0; color: #fff; }
+        .outline-list { display: flex; flex-direction: column; gap: 18px; }
+        .outline-item { display: flex; align-items: center; background: #231b16; border-radius: 10px; padding: 16px 18px; gap: 18px; }
+        .outline-icon { background: #3a2b22; color: #fff; border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .outline-info { flex: 1; }
+        .outline-title { font-weight: 600; color: #fff; font-size: 1.08rem; }
+        .outline-desc { color: #b6a89a; font-size: 0.98rem; }
+        .outline-progress { width: 120px; display: flex; align-items: center; gap: 8px; }
+        .progress-bar-bg { background: #2d211a; border-radius: 6px; width: 70px; height: 5px; overflow: hidden; }
+        .progress-bar-fill { background: #6b4c36; height: 100%; border-radius: 6px; transition: width 0.3s; }
+        .progress-label { font-size: 0.95rem; color: #fff; min-width: 24px; text-align: right; }
+        .resources-list { display: flex; flex-direction: column; gap: 14px; }
+        .resource-item { display: flex; align-items: center; background: #231b16; border-radius: 10px; padding: 14px 18px; gap: 16px; }
+        .resource-icon { background: #3a2b22; color: #fff; border-radius: 8px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .resource-info { flex: 1; }
+        .resource-title { font-weight: 600; color: #fff; font-size: 1.01rem; }
+        .resource-desc { color: #b6a89a; font-size: 0.95rem; }
+        .resource-action { color: #fff; font-size: 1.2rem; margin-left: 10px; }
+        .discussion-list { display: flex; flex-direction: column; gap: 22px; margin-top: 10px; }
+        .discussion-item { display: flex; align-items: flex-start; gap: 14px; }
+        .discussion-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: #3a2b22; }
+        .discussion-content { flex: 1; }
+        .discussion-author { font-weight: 600; color: #fff; font-size: 1rem; }
+        .discussion-meta { color: #b6a89a; font-size: 0.92rem; margin-left: 6px; }
+        .discussion-text { color: #f3f0ed; font-size: 1.01rem; margin-top: 2px; }
+        @media (max-width: 600px) {
+            .course-details-container { padding: 18px 2vw 40px 2vw; }
+            .course-title { font-size: 1.3rem; }
+            .section-title { font-size: 1.05rem; }
+            .outline-progress { width: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="../index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+            <span>DataFlix</span>
+        </a>
+        <nav class="site-header__nav-desktop">
+            <ul class="nav-list">
+                <li class="nav-list__item"><a href="../index.html" class="nav-list__link">Home</a></li>
+                <li class="nav-list__item"><a href="courses.html" class="nav-list__link">Courses</a></li>
+                <li class="nav-list__item"><a href="course-details.html" class="nav-list__link is-active">Course Details</a></li>
+                <li class="nav-list__item"><a href="profile.html" class="nav-list__link">Profile</a></li>
+                <li class="nav-list__item"><a href="login.html" class="nav-list__link">Login</a></li>
+                <li class="nav-list__item"><a href="signup.html" class="nav-list__link">Signup</a></li>
+                <li class="nav-list__item"><a href="quiz.html" class="nav-list__link">Quiz</a></li>
+                <li class="nav-list__item"><a href="quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="site-header__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html">
+                <img src="../assets/img/profile.png" alt="User Avatar" class="header-avatar">
+            </a>
+        </div>
+        <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+            <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+        </button>
+    </header>
+    <div class="mobile-slide-nav" id="mobile-navigation">
+        <nav class="mobile-slide-nav__links">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li><a href="../index.html" class="mobile-slide-nav__link">Home</a></li>
+                <li><a href="courses.html" class="mobile-slide-nav__link">Courses</a></li>
+                <li><a href="course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+                <li><a href="profile.html" class="mobile-slide-nav__link">Profile</a></li>
+                <li><a href="login.html" class="mobile-slide-nav__link">Login</a></li>
+                <li><a href="signup.html" class="mobile-slide-nav__link">Signup</a></li>
+                <li><a href="quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+                <li><a href="quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-slide-nav__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html" class="btn">My Profile</a>
+        </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <script src="../js/menuhamburguer.js"></script>
+    <div class="course-details-container"></div>
+    <script src="../js/course-details.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</body>
+</html> 
