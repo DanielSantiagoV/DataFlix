@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DataFlix</title>
+    <!-- Un único archivo CSS que controla todo el estilo y la responsividad -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    <link rel="stylesheet" href="../css/style-unified.css">
+    <link rel="stylesheet" href="../css/responsive-style.css">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ======================= Header del Sitio ======================= -->
+    <header class="site-header">
+        <a href="../index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+            <span>DataFlix</span>
+        </a>
+        <nav class="site-header__nav-desktop">
+            <ul class="nav-list">
+                <li class="nav-list__item"><a href="../index.html" class="nav-list__link">Home</a></li>
+                <li class="nav-list__item"><a href="courses.html" class="nav-list__link">Courses</a></li>
+                <li class="nav-list__item"><a href="course-details.html" class="nav-list__link">Course Details</a></li>
+                <li class="nav-list__item"><a href="profile.html" class="nav-list__link">Profile</a></li>
+                <li class="nav-list__item"><a href="login.html" class="nav-list__link">Login</a></li>
+                <li class="nav-list__item"><a href="signup.html" class="nav-list__link">Signup</a></li>
+                <li class="nav-list__item"><a href="quiz.html" class="nav-list__link">Quiz</a></li>
+                <li class="nav-list__item"><a href="quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="site-header__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html">
+                <img src="../assets/img/profile.png" alt="User Avatar" class="header-avatar">
+            </a>
+        </div>
+        <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+            <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+        </button>
+    </header>
+    <div class="mobile-slide-nav" id="mobile-navigation">
+        <nav class="mobile-slide-nav__links">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li><a href="../index.html" class="mobile-slide-nav__link">Home</a></li>
+                <li><a href="courses.html" class="mobile-slide-nav__link">Courses</a></li>
+                <li><a href="course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+                <li><a href="profile.html" class="mobile-slide-nav__link">Profile</a></li>
+                <li><a href="login.html" class="mobile-slide-nav__link">Login</a></li>
+                <li><a href="signup.html" class="mobile-slide-nav__link">Signup</a></li>
+                <li><a href="quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+                <li><a href="quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-slide-nav__actions">
+            <a href="login.html" class="btn btn--signin">Sign in</a>
+            <a href="profile.html" class="btn">My Profile</a>
+        </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+
+    <!-- ==================== Contenido Principal: Formulario de Login ==================== -->
+    <main class="site-main">
+        <div class="login-form-container">
+            <h1>Welcome back</h1>
+            <form id="loginForm" novalidate>
+                <div class="input-group">
+                    <label for="username">Email or username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your email or username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Contenedor para mostrar mensajes de éxito o error desde auth.js -->
+                <div id="message" class="form-message"></div>
+
+                <div class="options-group">
+                    <label for="remember-me" class="remember-me-label">
+                        <input type="checkbox" id="remember-me" name="remember-me">
+                        <span class="custom-checkbox"></span>
+                        Remember me
+                    </label>
+                </div>
+
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+            <p class="signup-link">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- ======================= Scripts al Final del Body ======================= -->
+    <!-- Script para la funcionalidad del menú móvil -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-toggle');
+        const mobileNav = document.getElementById('mobile-navigation');
+        const navOverlay = document.getElementById('nav-overlay');
+        const body = document.body;
+
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('is-active');
+            mobileNav.classList.toggle('is-active');
+            navOverlay.classList.toggle('is-active');
+            body.classList.toggle('body-no-scroll');
+        }
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', toggleMenu);
+        }
+        if (navOverlay) {
+            navOverlay.addEventListener('click', toggleMenu);
+        }
+    </script>
+    
+    <!-- Script principal de autenticación -->
+    <script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const emailOrUser = document.getElementById('username').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
+    const messageDiv = document.getElementById('message');
+    let users = JSON.parse(localStorage.getItem('dataflixUsers') || '[]');
+    const user = users.find(u => u.email === emailOrUser);
+    if (!user) {
+        messageDiv.textContent = 'No existe una cuenta con ese correo electrónico.';
+        messageDiv.style.color = '#e53935';
+        return;
+    }
+    if (user.password !== password) {
+        messageDiv.textContent = 'Contraseña incorrecta.';
+        messageDiv.style.color = '#e53935';
+        return;
+    }
+    messageDiv.textContent = '¡Inicio de sesión exitoso!';
+    messageDiv.style.color = '#4caf50';
+    // Guardar sesión (puedes guardar el usuario logueado si lo deseas)
+    localStorage.setItem('dataflixLoggedUser', JSON.stringify(user));
+    setTimeout(() => {
+        window.location.href = 'profile.html';
+    }, 1000);
+});
+</script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/menuhamburguer.js"></script>
+
+</body>
+</html>
