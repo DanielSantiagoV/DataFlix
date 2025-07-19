@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlix - Master Databases</title>
+    <!-- NOTA: Necesitarás un nuevo archivo CSS para que coincida con estas nuevas clases -->
+    <link rel="stylesheet" href="./css/main-style.css"> 
+    <link rel="stylesheet" href="./css/style.css"> 
+    <link rel="stylesheet" href="./css/style-unified.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+
+    <<!-- ======================= Header del Sitio ======================= -->
+<header class="site-header">
+    <a href="./index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+        <span>DataFlix</span>
+    </a>
+    <nav class="site-header__nav-desktop">
+        <ul class="nav-list">
+            <li class="nav-list__item"><a href="./index.html" class="nav-list__link">Home</a></li>
+            <li class="nav-list__item"><a href="./html/courses.html" class="nav-list__link">Courses</a></li>
+            <li class="nav-list__item"><a href="./html/course-details.html" class="nav-list__link">Course Details</a></li>
+            <li class="nav-list__item"><a href="./html/profile.html" class="nav-list__link">Profile</a></li>
+            <li class="nav-list__item"><a href="./html/login.html" class="nav-list__link">Login</a></li>
+            <li class="nav-list__item"><a href="./html/signup.html" class="nav-list__link">Signup</a></li>
+            <li class="nav-list__item"><a href="./html/quiz.html" class="nav-list__link">Quiz</a></li>
+            <li class="nav-list__item"><a href="./html/quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+        </ul>
+    </nav>
+    <div class="site-header__actions">
+        <a href="./html/login.html" class="btn btn--signin">Sign in</a>
+        <a href="./html/profile.html">
+            <img src="./assets/img/profile.png" alt="User Avatar" class="header-avatar">
+        </a>
+    </div>
+    <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+        <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+    </button>
+</header>
+
+<!-- ==================== Navegación Deslizante para Móvil ==================== -->
+<div class="mobile-slide-nav" id="mobile-navigation">
+    <nav class="mobile-slide-nav__links">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <li><a href="./index.html" class="mobile-slide-nav__link">Home</a></li>
+            <li><a href="./html/courses.html" class="mobile-slide-nav__link">Courses</a></li>
+            <li><a href="./html/course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+            <li><a href="./html/profile.html" class="mobile-slide-nav__link">Profile</a></li>
+            <li><a href="./html/login.html" class="mobile-slide-nav__link">Login</a></li>
+            <li><a href="./html/signup.html" class="mobile-slide-nav__link">Signup</a></li>
+            <li><a href="./html/quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+            <li><a href="./html/quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+        </ul>
+    </nav>
+    <div class="mobile-slide-nav__actions">
+        <a href="./html/login.html" class="btn btn--signin">Sign in</a>
+        <a href="./html/profile.html" class="btn">My Profile</a>
+    </div>
+</div>
+
+<!-- Superposición oscura para el fondo -->
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<!-- El resto de tu <main> va aquí... -->
+
+    <!-- ==================== Contenido Principal del Sitio ==================== -->
+    <main class="site-main">
+
+        <!-- Sección Hero -->
+        <section class="section-hero" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://wallpapers.com/images/hd/beautiful-database-connection-30fo5c3ti6zfifss.jpg') center center/cover no-repeat; border-radius: 20px;">
+            <div class="section-hero__content">
+                <h1 class="section-hero__title">¡Aprende Bases de Datos desde Cero con DataFlix!</h1>
+                <p class="section-hero__subtitle">Explora nuestros cursos gratuitos y pon a prueba tus conocimientos con cuestionarios interactivos. Mira el video, aprende y demuestra lo que sabes.</p>
+                <a href="./html/courses.html" class="btn btn--cta">Ver Cursos</a>
+            </div>
+        </section>
+        <section class="section-courses" style="margin-top: 48px; border-radius: 20px;">
+            <h2 class="section-title">Nuestros Cursos Destacados</h2>
+            <div class="courses-grid">
+                <article class="course-card">
+                    <img src="https://img.youtube.com/vi/6S8A-1jBD5Y/0.jpg" alt="¿Qué son las bases de datos?" class="course-card__image">
+                    <div class="course-card__content">
+                        <h3 class="course-card__title">¿Qué son las bases de datos?</h3>
+                        <p class="course-card__description">Descubre qué es una base de datos, su objetivo y su importancia en la vida diaria y en la organización de la información.</p>
+                        <a href="https://www.youtube.com/watch?v=6S8A-1jBD5Y" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+                        <a href="#" class="btn btn--secondary" onclick="selectCourse(0)">Ir al Quiz</a>
+                    </div>
+                </article>
+                <article class="course-card">
+                    <img src="https://img.youtube.com/vi/4wo_wZWk_UM/0.jpg" alt="¿Qué son los datos?" class="course-card__image">
+                    <div class="course-card__content">
+                        <h3 class="course-card__title">¿Qué son los datos?</h3>
+                        <p class="course-card__description">Aprende qué es un dato, su papel en la toma de decisiones y los diferentes tipos de datos según su estructura.</p>
+                        <a href="https://www.youtube.com/watch?v=4wo_wZWk_UM" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+                        <a href="#" class="btn btn--secondary" onclick="selectCourse(1)">Ir al Quiz</a>
+                    </div>
+                </article>
+                <article class="course-card">
+                    <img src="https://img.youtube.com/vi/b2L1Cn5vxFw/0.jpg" alt="¿Cómo entender las bases de datos?" class="course-card__image">
+                    <div class="course-card__content">
+                        <h3 class="course-card__title">¿Cómo entender las bases de datos?</h3>
+                        <p class="course-card__description">Comprende la estructura de las bases de datos relacionales, la normalización y las relaciones entre tablas.</p>
+                        <a href="https://www.youtube.com/watch?v=b2L1Cn5vxFw" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+                        <a href="#" class="btn btn--secondary" onclick="selectCourse(2)">Ir al Quiz</a>
+                    </div>
+                </article>
+                <article class="course-card">
+                    <img src="https://img.youtube.com/vi/6fcNDvQYZk0/0.jpg" alt="¿Cómo hacer representaciones conceptuales de una base de datos?" class="course-card__image">
+                    <div class="course-card__content">
+                        <h3 class="course-card__title">¿Cómo hacer representaciones conceptuales de una base de datos?</h3>
+                        <p class="course-card__description">Explora los modelos entidad-relación, los elementos de un diagrama E-R y su utilidad en el diseño de bases de datos.</p>
+                        <a href="https://www.youtube.com/watch?v=6fcNDvQYZk0" target="_blank" class="btn btn--primary" style="margin-right:10px;">Ver Video</a>
+                        <a href="#" class="btn btn--secondary" onclick="selectCourse(3)">Ir al Quiz</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script para el menú móvil -->
+    <script>
+         const hamburgerBtn = document.getElementById('hamburger-toggle');
+    const mobileNav = document.getElementById('mobile-navigation');
+    const navOverlay = document.getElementById('nav-overlay');
+    const body = document.body;
+
+    function toggleMenu() {
+        hamburgerBtn.classList.toggle('is-active');
+        mobileNav.classList.toggle('is-active');
+        navOverlay.classList.toggle('is-active');
+        body.classList.toggle('body-no-scroll');
+    }
+
+    hamburgerBtn.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+    </script>
+    <script>
+function selectCourse(idx) {
+  localStorage.setItem('selectedCourse', idx);
+  window.location.href = 'course-details.html';
+}
+</script>
+</body>
+</html>
