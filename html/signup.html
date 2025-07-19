@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - DataFlix</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive-style.css">
+    <link rel="stylesheet" href="../css/main-style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">DataFlix</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="course-details.html">Course Details</a>
+            <a href="profile.html">Profile</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Signup</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="quiz-results.html">Quiz Results</a>
+        </nav>
+        <div class="header-actions">
+            <button class="login-btn-header">Log in</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="signup-form-container">
+            <h1>Create your account</h1>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="fullname">Full name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" naSme="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Confirm password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="options-group">
+                    <label for="terms" class="terms-label">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="custom-checkbox"></span>
+                        I agree to the Terms of Service and Privacy Policy
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn--primary signup-btn-main">Sign up</button>
+            </form>
+            <p class="login-link">
+                Already have an account? <a href="login.html">Log in</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden.');
+                return;
+            }
+            if (!document.getElementById('terms').checked) {
+                alert('Debes aceptar los Términos de Servicio y la Política de Privacidad.');
+                return;
+            }
+            // Obtener usuarios existentes
+            let users = JSON.parse(localStorage.getItem('dataflixUsers') || '[]');
+            if (users.some(u => u.email === email)) {
+                alert('Ya existe una cuenta con ese correo electrónico.');
+                return;
+            }
+            users.push({ fullname, email, password });
+            localStorage.setItem('dataflixUsers', JSON.stringify(users));
+            alert('¡Cuenta creada exitosamente!');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
