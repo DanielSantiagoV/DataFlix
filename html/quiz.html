@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Basics Quiz - DataFlix</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/main-style.css">
+  <link rel="stylesheet" href="../css/style-unified.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <style>
+    body { background: #181411; color: #f3f0ed; font-family: 'Poppins', 'Inter', sans-serif; }
+    .quiz-container { max-width: 700px; margin: 48px auto 0 auto; padding: 32px 18px 48px 18px; background: none; }
+    .quiz-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 32px; color: #fff; text-align: left; }
+    .quiz-progress-bar { width: 100%; height: 8px; background: #2d211a; border-radius: 6px; margin-bottom: 8px; overflow: hidden; }
+    .quiz-progress-bar__fill { height: 100%; background: #fff; border-radius: 6px; transition: width 0.3s; }
+    .quiz-progress-label { color: #fff; font-size: 1rem; margin-bottom: 24px; }
+    .quiz-timer { display: flex; gap: 32px; margin-bottom: 32px; }
+    .quiz-timer__box { background: #2d211a; border-radius: 12px; padding: 18px 38px; color: #fff; font-size: 2rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; min-width: 120px; }
+    .quiz-timer__box div { font-size: 1rem; font-weight: 400; margin-top: 6px; color: #b6a89a; }
+    .quiz-question__number { font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
+    .quiz-question__text { font-size: 1.15rem; margin-bottom: 24px; color: #fff; }
+    .quiz-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .quiz-option { display: flex; align-items: center; background: none; border: 1px solid #3a2b22; border-radius: 10px; padding: 16px 18px; font-size: 1.08rem; color: #fff; cursor: pointer; transition: border 0.2s, background 0.2s; }
+    .quiz-option input[type="radio"] { accent-color: #fff; margin-right: 16px; width: 20px; height: 20px; }
+    .quiz-option:hover, .quiz-option input[type="radio"]:checked + span { border: 1.5px solid #fff; background: #231b16; }
+    .quiz-next-btn { background: #fff; color: #181411; border: none; border-radius: 22px; padding: 12px 32px; font-size: 1.1rem; font-weight: 600; cursor: pointer; float: right; margin-top: 8px; transition: background 0.2s, color 0.2s; }
+    .quiz-next-btn:hover { background: #b6a89a; color: #181411; }
+    @media (max-width: 600px) {
+      .quiz-container { padding: 12px 2vw 32px 2vw; }
+      .quiz-title { font-size: 1.2rem; }
+      .quiz-timer__box { font-size: 1.2rem; padding: 10px 12px; min-width: 70px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html" class="site-header__logo" style="display: flex; align-items: center; gap: 10px;">
+      <span>DataFlix</span>
+    </a>
+    <nav class="site-header__nav-desktop">
+      <ul class="nav-list">
+        <li class="nav-list__item"><a href="../index.html" class="nav-list__link">Home</a></li>
+        <li class="nav-list__item"><a href="courses.html" class="nav-list__link">Courses</a></li>
+        <li class="nav-list__item"><a href="course-details.html" class="nav-list__link">Course Details</a></li>
+        <li class="nav-list__item"><a href="profile.html" class="nav-list__link">Profile</a></li>
+        <li class="nav-list__item"><a href="login.html" class="nav-list__link">Login</a></li>
+        <li class="nav-list__item"><a href="signup.html" class="nav-list__link">Signup</a></li>
+        <li class="nav-list__item"><a href="quiz.html" class="nav-list__link">Quiz</a></li>
+        <li class="nav-list__item"><a href="quiz-results.html" class="nav-list__link">Quiz Results</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a href="login.html" class="btn btn--signin">Sign in</a>
+      <a href="profile.html">
+        <img src="../assets/img/profile.png" alt="User Avatar" class="header-avatar">
+      </a>
+    </div>
+    <button class="hamburger-button" id="hamburger-toggle" aria-label="Toggle Navigation">
+      <span class="hamburger-button__box"><span class="hamburger-button__inner"></span></span>
+    </button>
+  </header>
+  <div class="mobile-slide-nav" id="mobile-navigation">
+    <nav class="mobile-slide-nav__links">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li><a href="../index.html" class="mobile-slide-nav__link">Home</a></li>
+        <li><a href="courses.html" class="mobile-slide-nav__link">Courses</a></li>
+        <li><a href="course-details.html" class="mobile-slide-nav__link">Course Details</a></li>
+        <li><a href="profile.html" class="mobile-slide-nav__link">Profile</a></li>
+        <li><a href="login.html" class="mobile-slide-nav__link">Login</a></li>
+        <li><a href="signup.html" class="mobile-slide-nav__link">Signup</a></li>
+        <li><a href="quiz.html" class="mobile-slide-nav__link">Quiz</a></li>
+        <li><a href="quiz-results.html" class="mobile-slide-nav__link">Quiz Results</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-slide-nav__actions">
+      <a href="login.html" class="btn btn--signin">Sign in</a>
+      <a href="profile.html" class="btn">My Profile</a>
+    </div>
+  </div>
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <div class="quiz-container">
+    <h1 class="quiz-title">SQL Basics Quiz</h1>
+    <div class="quiz-timer" style="justify-content: flex-end;">
+      <div class="quiz-timer__box"><span id="minutes">09</span><div>Minutes</div></div>
+      <div class="quiz-timer__box"><span id="seconds">00</span><div>Seconds</div></div>
+    </div>
+    <div id="quizModule"></div>
+    <div id="quizMessages" style="margin-top:16px; color:#e53935; font-weight:600;"></div>
+    <div style="display: flex; justify-content: flex-end; margin-top: 32px; gap: 16px;">
+      <button class="quiz-next-btn" id="finishBtn" style="display:none;">Finalizar cuestionario</button>
+      <button class="quiz-next-btn" id="advanceBtn" style="display:none;">Avanzar módulo</button>
+    </div>
+  </div>
+  <script>
+// Datos de los módulos
+const modules = [
+  {
+    video: "https://www.youtube.com/embed/6S8A-1jBD5Y",
+    title: "¿Qué son las bases de datos?",
+    questions: [
+      {
+        q: "¿Qué es una base de datos?",
+        options: [
+          "Un conjunto desordenado de archivos.",
+          "Un sistema que permite almacenar y organizar datos de forma estructurada.",
+          "Un lenguaje de programación."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Cuál es el objetivo principal de una base de datos?",
+        options: [
+          "Aumentar el tamaño de los datos.",
+          "Hacer que los datos sean ilegibles para otros.",
+          "Facilitar el almacenamiento, organización y acceso a la información."
+        ],
+        correct: 2
+      },
+      {
+        q: "¿Qué diferencia hay entre una base de datos física y una digital?",
+        options: [
+          "La digital solo se usa en bancos.",
+          "La física está en papel; la digital en sistemas informáticos.",
+          "No hay diferencia."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Por qué es importante que una base de datos sea estructurada?",
+        options: [
+          "Para que ocupe más espacio.",
+          "Para facilitar la búsqueda y organización de datos.",
+          "Para evitar que otros la usen."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Dónde usamos bases de datos en la vida diaria?",
+        options: [
+          "Solo en grandes empresas.",
+          "En supermercados, redes sociales y hospitales.",
+          "En videojuegos únicamente."
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    video: "https://www.youtube.com/embed/4wo_wZWk_UM",
+    title: "¿Qué son los datos?",
+    questions: [
+      {
+        q: "¿Qué es un dato?",
+        options: [
+          "Una afirmación sin sentido.",
+          "Una representación simbólica de un valor o hecho.",
+          "Una emoción humana."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué papel juegan los datos en la toma de decisiones?",
+        options: [
+          "Ayudan a tomar decisiones informadas y objetivas.",
+          "Confunden a las personas.",
+          "No influyen en las decisiones."
+        ],
+        correct: 0
+      },
+      {
+        q: "¿Cuál es la diferencia entre dato e información?",
+        options: [
+          "No hay ninguna.",
+          "La información es un conjunto de datos interpretados.",
+          "Los datos siempre contienen más contexto que la información."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Cuál es un ejemplo cotidiano del uso de datos?",
+        options: [
+          "Soñar despierto.",
+          "Consultar el clima para decidir qué ropa usar.",
+          "Cantar en la ducha."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué tipo de datos existen según su estructura?",
+        options: [
+          "Cualitativos, cuantitativos, estructurados y no estructurados.",
+          "Buenos y malos.",
+          "Positivos y negativos."
+        ],
+        correct: 0
+      }
+    ]
+  },
+  {
+    video: "https://www.youtube.com/embed/b2L1Cn5vxFw",
+    title: "¿Cómo entender las bases de datos?",
+    questions: [
+      {
+        q: "¿Qué representa una tabla en una base de datos relacional?",
+        options: [
+          "Una función matemática.",
+          "Una colección de datos organizados en filas y columnas.",
+          "Un menú de opciones."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué es un registro en una tabla?",
+        options: [
+          "Un campo individual.",
+          "Una columna con fórmulas.",
+          "Una fila que representa una entidad completa."
+        ],
+        correct: 2
+      },
+      {
+        q: "¿Qué es la normalización?",
+        options: [
+          "Hacer que la base de datos ocupe más espacio.",
+          "Eliminar datos innecesarios y evitar redundancias.",
+          "Traducir la base de datos a otro idioma."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué es una relación entre tablas?",
+        options: [
+          "Un vínculo entre diferentes tablas basado en campos comunes.",
+          "Un resumen visual de la base de datos.",
+          "Una función matemática entre columnas."
+        ],
+        correct: 0
+      },
+      {
+        q: "¿Para qué se usan claves primarias y foráneas?",
+        options: [
+          "Para escribir contraseñas seguras.",
+          "Para identificar registros únicos y relacionar tablas.",
+          "Para colorear la base de datos."
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    video: "https://www.youtube.com/embed/6fcNDvQYZk0",
+    title: "¿Cómo hacer representaciones conceptuales de una base de datos?",
+    questions: [
+      {
+        q: "¿Qué es un modelo entidad-relación (E-R)?",
+        options: [
+          "Un conjunto de reglas ortográficas.",
+          "Una técnica para diseñar gráficamente una base de datos.",
+          "Un tipo de lenguaje de programación."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué elementos componen un diagrama E-R?",
+        options: [
+          "Solo tablas.",
+          "Entidades, relaciones y atributos.",
+          "Gráficas estadísticas y porcentajes."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué es una entidad débil?",
+        options: [
+          "Una entidad que no puede ser representada gráficamente.",
+          "Una que depende de otra entidad para identificarse.",
+          "Una que tiene muchos atributos."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Qué representa el rombo en un diagrama E-R?",
+        options: [
+          "Una entidad.",
+          "Una relación.",
+          "Un atributo."
+        ],
+        correct: 1
+      },
+      {
+        q: "¿Por qué es útil un diagrama E-R antes de construir una base de datos?",
+        options: [
+          "Porque ayuda a prever la estructura lógica de la información.",
+          "Porque decora la presentación.",
+          "Porque reemplaza el código."
+        ],
+        correct: 0
+      }
+    ]
+  }
+];
+
+let currentModule = 0;
+let userAnswers = modules.map(m => Array(m.questions.length).fill(null));
+let videoWatched = modules.map(() => false);
+let moduleFinished = modules.map(() => false);
+let timer = 540; // 9 minutos
+let timerInterval;
+let timerStarted = false;
+
+const quizModule = document.getElementById('quizModule');
+const finishBtn = document.getElementById('finishBtn');
+const advanceBtn = document.getElementById('advanceBtn');
+const quizMessages = document.getElementById('quizMessages');
+const minutes = document.getElementById('minutes');
+const seconds = document.getElementById('seconds');
+
+function renderModule(idx) {
+  const mod = modules[idx];
+  let html = `<h2 style="margin-bottom:18px;">Módulo ${idx+1}: ${mod.title}</h2>`;
+  html += `<div style="margin-bottom:24px;"><iframe id="videoFrame" width="100%" height="340" src="${mod.video}?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+  html += `<form id="questionsForm">`;
+  mod.questions.forEach((q, i) => {
+    html += `<div class="quiz-question__number">Pregunta ${i+1} de ${mod.questions.length}</div>`;
+    html += `<div class="quiz-question__text">${q.q}</div>`;
+    html += `<div class="quiz-options">`;
+    q.options.forEach((opt, j) => {
+      html += `<label class="quiz-option"><input type="radio" name="q${i}" value="${j}" ${userAnswers[idx][i]===j?"checked":""} ${(videoWatched[idx] && !moduleFinished[idx])?"":"disabled"}> ${opt}</label>`;
+    });
+    html += `</div>`;
+  });
+  html += `</form>`;
+  // Si el módulo ya fue finalizado, mostrar resultados de este módulo
+  if (moduleFinished[idx]) {
+    html += renderModuleResults(idx);
+  }
+  quizModule.innerHTML = html;
+  // Mensajes de ayuda
+  updateQuizMessages();
+  // Botones
+  finishBtn.style.display = (videoWatched[idx] && !moduleFinished[idx]) ? "inline-block" : "none";
+  advanceBtn.style.display = moduleFinished[idx] ? "inline-block" : "none";
+  // Estado del botón finalizar
+  checkFinishBtn();
+  // Video API
+  setupVideoListener(idx);
+  // Listeners para respuestas
+  document.querySelectorAll('.quiz-option input[type="radio"]').forEach(input => {
+    input.addEventListener('change', e => {
+      const qIdx = parseInt(input.name.replace('q',''));
+      userAnswers[idx][qIdx] = parseInt(input.value);
+      checkFinishBtn();
+      updateQuizMessages();
+    });
+  });
+}
+
+function updateQuizMessages() {
+  if (!videoWatched[currentModule]) {
+    quizMessages.textContent = 'Debes ver el video completo para responder el cuestionario.';
+  } else if (userAnswers[currentModule].some(v => v === null)) {
+    quizMessages.textContent = 'Responde todas las preguntas para finalizar el cuestionario.';
+  } else {
+    quizMessages.textContent = '';
+  }
+}
+
+function checkFinishBtn() {
+  // El botón siempre está visible tras ver el video, pero solo habilitado si todas respondidas
+  const allAnswered = userAnswers[currentModule].every(v => v !== null);
+  finishBtn.disabled = !allAnswered;
+}
+
+function setupVideoListener(idx) {
+  const iframe = document.getElementById('videoFrame');
+  if (!iframe) return;
+  if (!window.YT) {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+    window.onYouTubeIframeAPIReady = () => setupVideoListener(idx);
+    return;
+  }
+  window.player = new YT.Player('videoFrame', {
+    events: {
+      'onStateChange': function(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+          videoWatched[idx] = true;
+          // Habilitar inputs
+          document.querySelectorAll('.quiz-option input[type="radio"]').forEach(input => input.disabled = false);
+          checkFinishBtn();
+          updateQuizMessages();
+          // Iniciar timer solo al terminar el video del primer módulo
+          if (!timerStarted && idx === 0) {
+            timerStarted = true;
+            updateTimer();
+          }
+          renderModule(idx); // Forzar render para actualizar botones
+        }
+      }
+    }
+  });
+}
+
+finishBtn.onclick = function() {
+  // Marcar módulo como finalizado y mostrar resultados
+  moduleFinished[currentModule] = true;
+  // Guardar progreso parcial por usuario logueado
+  const user = JSON.parse(localStorage.getItem('dataflixLoggedUser'));
+  if (user && user.email) {
+    const key = `quizData_${user.email}`;
+    const quizData = {
+      answers: userAnswers,
+      questions: modules,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(key, JSON.stringify(quizData));
+  }
+  renderModule(currentModule);
+};
+
+advanceBtn.onclick = function() {
+  if (currentModule < modules.length - 1) {
+    currentModule++;
+    renderModule(currentModule);
+  } else {
+    // Guardar respuestas y progreso por usuario logueado
+    const user = JSON.parse(localStorage.getItem('dataflixLoggedUser'));
+    if (user && user.email) {
+      const key = `quizData_${user.email}`;
+      const quizData = {
+        answers: userAnswers,
+        questions: modules,
+        timestamp: Date.now()
+      };
+      localStorage.setItem(key, JSON.stringify(quizData));
+    }
+    window.location.href = 'quiz-results.html';
+  }
+};
+
+function renderModuleResults(idx) {
+  const mod = modules[idx];
+  let html = `<div class="section-title" style="margin-top:32px;">Resultados del módulo</div>`;
+  html += `<ul style="list-style:none; padding:0;">`;
+  mod.questions.forEach((q, i) => {
+    const userAns = userAnswers[idx][i];
+    const isCorrect = userAns === q.correct;
+    html += `<li style="margin-bottom:18px;">
+      <div style="font-weight:600; color:${isCorrect ? '#4caf50' : '#e53935'};">${isCorrect ? '✔ Correcta' : '✖ Incorrecta'}</div>
+      <div><strong>Pregunta:</strong> ${q.q}</div>
+      <div><strong>Tu respuesta:</strong> ${q.options[userAns] ?? 'Sin responder'}</div>
+      <div><strong>Respuesta correcta:</strong> ${q.options[q.correct]}</div>
+      <div style="color:#b6a89a; font-size:0.98rem; margin-top:4px;">${isCorrect ? '¡Bien hecho!' : 'Revisa el video para más información.'}</div>
+    </li>`;
+  });
+  html += `</ul>`;
+  return html;
+}
+
+function updateTimer() {
+  const min = String(Math.floor(timer / 60)).padStart(2, '0');
+  const sec = String(timer % 60).padStart(2, '0');
+  minutes.textContent = min;
+  seconds.textContent = sec;
+  if (timerStarted && timer > 0) {
+    timer--;
+    timerInterval = setTimeout(updateTimer, 1000);
+  } else if (timer === 0) {
+    // Guardar respuestas y progreso por usuario logueado (también aquí)
+    const user = JSON.parse(localStorage.getItem('dataflixLoggedUser'));
+    if (user && user.email) {
+      const key = `quizData_${user.email}`;
+      const quizData = {
+        answers: userAnswers,
+        questions: modules,
+        timestamp: Date.now()
+      };
+      localStorage.setItem(key, JSON.stringify(quizData));
+    }
+    window.location.href = 'quiz-results.html';
+  }
+}
+
+// Inicializar
+renderModule(0);
+// Timer solo inicia tras ver el video del primer módulo
+</script>
+<script src="../js/menuhamburguer.js"></script>
+</body>
+</html> 
