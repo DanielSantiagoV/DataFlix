@@ -498,7 +498,7 @@ Puede cerrar sesión o continuar aprendiendo
 
 ## 🎥 Enlace al Video Explicativo
 
-[Ver video explicativo en YouTube](https://youtube.com/...) <!-- Reemplaza con el enlace real -->
+[Ver video explicativo en YouTube](https://youtu.be/FNyrEZoC5x8) <!-- Reemplaza con el enlace real -->
 
 ---
 
