@@ -1,4 +1,6 @@
 // course-details.js
+console.log('🎓 Cargando course-details.js');
+
 const courses = [
   {
     title: "¿Qué son las bases de datos?",
@@ -49,19 +51,44 @@ const courses = [
     ]
   }
 ];
+
+console.log('📚 Cursos disponibles:', courses.length);
+
+// Obtener el curso seleccionado del localStorage
 const idx = parseInt(localStorage.getItem('selectedCourse'));
+console.log('🎯 Índice del curso seleccionado:', idx);
+
+// Validar que el índice sea válido
 if (isNaN(idx) || idx < 0 || idx >= courses.length) {
+  console.error('❌ Índice de curso inválido:', idx);
+  alert('Error: Curso no encontrado. Redirigiendo a la página de cursos.');
   window.location.href = 'courses.html';
+  throw new Error('Índice de curso inválido');
 }
+
+// Obtener el curso seleccionado
 const c = courses[idx];
+console.log('✅ Curso cargado:', c.title);
+
+// Obtener el contenedor
 const container = document.querySelector('.course-details-container');
-container.innerHTML = `
+if (!container) {
+  console.error('❌ No se encontró el contenedor .course-details-container');
+  throw new Error('Contenedor no encontrado');
+}
+
+// Generar el contenido HTML
+const htmlContent = `
   <div class="breadcrumb">
     <a href="courses.html">Cursos</a> <span class="sep">/</span> <span>${c.title}</span>
   </div>
   <div class="course-title">${c.title}</div>
   <div class="course-desc">${c.descripcion}</div>
-  <div style="margin-bottom: 24px;"><iframe width="100%" height="340" src="${c.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  <div style="margin-bottom: 24px;">
+    <iframe width="100%" height="340" src="${c.video}" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
   <div class="section-title">Temas y Preguntas</div>
   <ul class="outline-list">
     ${c.temas.map(t => `<li class="outline-item"><div class="outline-info"><div class="outline-title">${t}</div></div></li>`).join('')}
@@ -71,4 +98,8 @@ container.innerHTML = `
     <a href="quiz.html" class="btn btn--secondary">Ir al Quiz</a>
     <a href="courses.html" class="btn">Volver a Cursos</a>
   </div>
-`; 
+`;
+
+// Insertar el contenido en el contenedor
+container.innerHTML = htmlContent;
+console.log('✅ Contenido del curso cargado correctamente'); 

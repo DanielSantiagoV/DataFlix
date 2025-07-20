@@ -1,0 +1,193 @@
+/* =================================================================== */
+/*                    FIX PARA MENÚ HAMBURGUESA                        */
+/* =================================================================== */
+
+/* Asegurar que el botón hamburguesa esté oculto por defecto */
+.hamburger-button {
+    display: none !important;
+    width: 40px;
+    height: 24px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+}
+
+/* Estructura del botón hamburguesa */
+.hamburger-button__box {
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+
+/* Líneas del botón hamburguesa */
+.hamburger-button__inner,
+.hamburger-button__inner::before,
+.hamburger-button__inner::after {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    position: absolute;
+    transition: transform 0.2s ease-in-out;
+}
+
+.hamburger-button__inner {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-button__inner::before,
+.hamburger-button__inner::after {
+    content: '';
+}
+
+.hamburger-button__inner::before {
+    top: -10px;
+}
+
+.hamburger-button__inner::after {
+    bottom: -10px;
+}
+
+/* Animación cuando está activo */
+.hamburger-button.is-active .hamburger-button__inner {
+    transform: rotate(45deg);
+}
+
+.hamburger-button.is-active .hamburger-button__inner::before {
+    top: 0;
+    transform: rotate(-90deg);
+}
+
+.hamburger-button.is-active .hamburger-button__inner::after {
+    bottom: 0;
+    opacity: 0;
+}
+
+/* Navegación móvil */
+.mobile-slide-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 30px 40px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background-color: #1c1c1c;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1005;
+    box-sizing: border-box;
+}
+
+.mobile-slide-nav.is-active {
+    transform: translateX(0);
+}
+
+.mobile-slide-nav__links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mobile-slide-nav__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 0;
+    transition: color 0.3s;
+}
+
+.mobile-slide-nav__link:hover {
+    color: #e6007a;
+}
+
+.mobile-slide-nav__actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Overlay de fondo */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.nav-overlay.is-active {
+    display: block;
+}
+
+/* Prevenir scroll cuando el menú está abierto */
+.body-no-scroll {
+    overflow: hidden;
+}
+
+/* =================================================================== */
+/*                    RESPONSIVIDAD                                    */
+/* =================================================================== */
+
+/* Mostrar menú hamburguesa en tablets */
+@media (max-width: 1024px) {
+    .site-header__nav-desktop {
+        display: none !important;
+    }
+    
+    .hamburger-button {
+        display: inline-block !important;
+    }
+}
+
+/* Mostrar menú hamburguesa en móviles */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 20px;
+        justify-content: space-between;
+    }
+    
+    .site-header__nav-desktop,
+    .site-header__actions {
+        display: none !important;
+    }
+    
+    .hamburger-button {
+        display: inline-block !important;
+    }
+    
+    /* Asegurar que el logo no se centre automáticamente */
+    .site-header {
+        justify-content: space-between !important;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .mobile-slide-nav {
+        width: 90%;
+        max-width: none;
+    }
+    
+    .hamburger-button {
+        width: 35px;
+        height: 20px;
+    }
+    
+    .hamburger-button__box {
+        width: 35px;
+        height: 20px;
+    }
+} 

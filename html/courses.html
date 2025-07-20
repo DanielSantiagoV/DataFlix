@@ -139,8 +139,27 @@
 
     <script>
 function selectCourse(idx) {
+  console.log('🎯 Seleccionando curso:', idx);
+  
+  // Validar que el índice sea válido
+  if (idx < 0 || idx > 3) {
+    console.error('❌ Índice de curso inválido:', idx);
+    alert('Error: Curso no encontrado');
+    return;
+  }
+  
+  // Guardar el curso seleccionado en localStorage
   localStorage.setItem('selectedCourse', idx);
-  window.location.href = 'course-details.html';
+  console.log('✅ Curso guardado en localStorage:', idx);
+  
+  // Redirigir a la página de detalles del curso
+  try {
+    window.location.href = 'course-details.html';
+    console.log('🔄 Redirigiendo a course-details.html');
+  } catch (error) {
+    console.error('❌ Error al redirigir:', error);
+    alert('Error al cargar el curso. Inténtalo de nuevo.');
+  }
 }
 </script>
 

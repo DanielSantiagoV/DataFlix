@@ -1,0 +1,135 @@
+🎬 GUION DE PRESENTACIÓN - DATAFIX
+
+===========================================
+INTRODUCCIÓN (30 segundos)
+===========================================
+
+"Hola a todos, hoy les presento DataFlix, una plataforma educativa innovadora que democratiza el aprendizaje de bases de datos. ¿Se imaginan tener Netflix pero para aprender bases de datos? Eso es exactamente lo que hemos creado."
+
+===========================================
+PROBLEMA QUE RESOLVEMOS (45 segundos)
+===========================================
+
+"El problema que identificamos es que muchas personas quieren aprender bases de datos pero encuentran barreras:
+• Los cursos tradicionales son costosos
+• El contenido es aburrido y poco interactivo
+• No hay seguimiento del progreso
+• Las plataformas no son responsivas
+
+DataFlix soluciona todos estos problemas."
+
+===========================================
+CARACTERÍSTICAS PRINCIPALES (2 minutos)
+===========================================
+
+"Ahora les muestro las características principales de nuestra plataforma:
+
+1. 📚 CATÁLOGO DE CURSOS ESTILO NETFLIX
+   - Interfaz moderna y atractiva
+   - Cursos gratuitos con videos de YouTube integrados
+   - Navegación intuitiva y responsiva
+   - Diseño que motiva el aprendizaje
+
+2. 🧠 SISTEMA DE QUIZZES INTERACTIVOS
+   - Después de cada video, puedes poner a prueba tus conocimientos
+   - Preguntas dinámicas que se generan automáticamente
+   - Feedback inmediato con resultados detallados
+   - Sistema de puntuación para gamificar el aprendizaje
+
+3. 👤 PERFIL DE USUARIO PERSONALIZADO
+   - Registro e inicio de sesión seguro
+   - Seguimiento detallado del progreso por módulo
+   - Estadísticas de rendimiento
+   - Historial de quizzes completados
+
+4. 📱 DISEÑO RESPONSIVO
+   - Funciona perfectamente en móviles, tablets y computadoras
+   - Menú hamburguesa para navegación móvil
+   - Interfaz adaptativa que se ajusta a cualquier pantalla"
+
+===========================================
+DEMOSTRACIÓN TÉCNICA (1.5 minutos)
+===========================================
+
+"Permítanme hacer una demostración rápida:
+
+[DEMOSTRAR EN VIVO]
+• Mostrar la página principal con el catálogo de cursos
+• Hacer clic en un curso para ver el video
+• Ir al quiz y responder algunas preguntas
+• Mostrar el perfil de usuario con el progreso
+
+Como pueden ver, la experiencia es fluida y profesional."
+
+===========================================
+ASPECTOS TÉCNICOS (1 minuto)
+===========================================
+
+"Desde el punto de vista técnico, DataFlix está construido con:
+• HTML5 semántico para estructura
+• CSS3 moderno con Flexbox y Grid
+• JavaScript vanilla para la lógica
+• LocalStorage para persistencia de datos
+• No requiere backend - es 100% frontend
+
+Utilizamos metodología Agile SCRUM con un equipo de 5 desarrolladores, implementando Git Flow para el control de versiones."
+
+===========================================
+BENEFICIOS Y DIFERENCIADORES (45 segundos)
+===========================================
+
+"¿Qué hace especial a DataFlix?
+
+✅ TOTALMENTE GRATUITO - Sin costos ocultos
+✅ APRENDIZAJE PROGRESIVO - Desde cero hasta avanzado
+✅ EXPERIENCIA MODERNA - Interfaz tipo Netflix
+✅ ACCESIBLE - Funciona en cualquier dispositivo
+✅ INTERACTIVO - No solo ver, sino practicar
+✅ PERSONALIZADO - Tu progreso, tu ritmo"
+
+===========================================
+CASOS DE USO (30 segundos)
+===========================================
+
+"DataFlix es perfecto para:
+• Estudiantes que quieren aprender bases de datos
+• Profesionales que necesitan actualizar conocimientos
+• Autodidactas que prefieren aprender a su ritmo
+• Instituciones educativas como recurso complementario"
+
+===========================================
+CONCLUSIÓN Y LLAMADO A LA ACCIÓN (30 segundos)
+===========================================
+
+"DataFlix representa el futuro del aprendizaje de bases de datos: accesible, interactivo y efectivo. 
+
+¿Quieren probarlo? Solo abran index.html en cualquier navegador y comiencen su viaje de aprendizaje.
+
+¿Preguntas? Estoy aquí para responderlas."
+
+===========================================
+POSIBLES PREGUNTAS Y RESPUESTAS
+===========================================
+
+P: "¿Cómo se mantiene la plataforma sin backend?"
+R: "Utilizamos LocalStorage del navegador para guardar datos de usuario y progreso. Es una solución elegante para un MVP."
+
+P: "¿Los cursos son solo videos de YouTube?"
+R: "Sí, pero los hemos curados y organizado en una experiencia de aprendizaje estructurada con quizzes personalizados."
+
+P: "¿Pueden agregar más cursos?"
+R: "¡Absolutamente! La arquitectura está diseñada para ser escalable y fácil de expandir."
+
+P: "¿Es realmente gratuito?"
+R: "Sí, 100% gratuito. Creemos en democratizar el acceso al conocimiento."
+
+===========================================
+NOTAS PARA LA PRESENTACIÓN
+===========================================
+
+• Tiempo total estimado: 7-8 minutos
+• Tener la plataforma abierta y lista para demostrar
+• Preparar ejemplos específicos de quizzes
+• Tener datos de progreso de ejemplo en el perfil
+• Practicar la navegación entre páginas
+• Tener respuestas preparadas para preguntas técnicas 
